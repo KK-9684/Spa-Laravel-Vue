@@ -33,7 +33,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 });
 
 // Login, Register
-Route::group(['middleware' => 'guest:api'], function () {
+Route::prefix('api')->middleware('guest:api')->group(function () {
+
     Route::post('login', [LoginController::class, 'login']);
     Route::post('register', [RegisterController::class, 'register']);
 
